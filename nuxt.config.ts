@@ -15,6 +15,11 @@ export default defineNuxtConfig({
   vite: {
     define: {
       "process.env.DEBUG": false
-    }
+    },
+    server: {
+      watch: {
+        usePolling: true,
+      },
+    },
   }
 })
