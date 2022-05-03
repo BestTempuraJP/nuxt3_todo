@@ -1,23 +1,27 @@
 <template>
   <div>
-    <p>{{ number }}</p>
-    <button @click="inc()">
-      Inc
-    </button>
-    <button @click="dec()">
-      Dec
-    </button>
+    <form @submit.prevent="add">
+      <input
+        v-model="todo"
+      />
+      <button type="submit">
+        Inc
+      </button>
+    </form>
+    <ul>
+      <li v-for="(todo, index) in todos" :key="index">
+        {{ todo }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-let number = ref(1)
+let todo = ref('')
+let todos = ref<string[]>([])
 
-const inc = () => {
-  number.value++
+const add = () => {
+  todos.value.push(todo.value)
+  todo.value = ''
 }
-const dec = () => {
-  number.value--
-}
-
 </script>
