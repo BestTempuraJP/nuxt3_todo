@@ -1,21 +1,25 @@
 <template>
   <div>
-    <form @submit.prevent="add">
-      <label>title</label>
-      <input id="title" v-model="form.title" />
-      <label>body</label>
-      <input id="text" v-model="form.body" />
-      <button type="submit">
-        Submit
-      </button>
-    </form>
-    <ul>
-      <li v-for="(todo, index) in todos" :key="index">
-        <p>id: {{ todo.id }}</p>
-        <p>title: {{ todo.title }}</p>
-        <p>body: {{ todo.body }}</p>
-      </li>
-    </ul>
+    <v-container>
+      <v-form @submit.prevent="add" class="pb-5">
+        <v-text-field label="Title" v-model="form.title" />
+        <v-text-field label="Body" v-model="form.body" />
+        <v-btn color="primary" type="submit"><b>Submit</b></v-btn>
+      </v-form>
+      <v-row>
+        <v-col  v-for="(todo, index) in todos" :key="index" cols="12" md="4">
+          <v-card>
+            <v-card-title>
+              <p>title: {{ todo.title }}</p>
+            </v-card-title>
+            <v-card-text>
+              <p>id: {{ todo.id }}</p>
+              <p>body: {{ todo.body }}</p>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
