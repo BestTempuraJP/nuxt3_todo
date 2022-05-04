@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col  v-for="(todo, index) in todoList" :key="index" cols="12" md="4">
+      <v-col v-for="(todo, index) in todoList" :key="index" cols="12" md="4">
         <v-card>
           <v-card-title>
             <p>title: {{ todo.title }}</p>

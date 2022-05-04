@@ -34,7 +34,7 @@ export const useTodos = () => {
     }
   }
 
-  const deleteTodo = (id: Number) => {
+  const deleteTodo = (id: number) => {
     const targetIndex = todoList.value.findIndex(todo => todo.id === id)
     if (targetIndex > -1) {
       todoList.value.splice(targetIndex, 1)
