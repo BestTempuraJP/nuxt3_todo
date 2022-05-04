@@ -29,8 +29,15 @@ export const useTodos = () => {
 
   const updateTodo = (payload: Todo) => {
     const targetIndex = todoList.value.findIndex(todo => todo.id === Number(payload.id))
-    if (todoList.value[targetIndex]) {
+    if (targetIndex > -1) {
       todoList.value[targetIndex] = payload
+    }
+  }
+
+  const deleteTodo = (id: Number) => {
+    const targetIndex = todoList.value.findIndex(todo => todo.id === id)
+    if (targetIndex > -1) {
+      todoList.value.splice(targetIndex, 1)
     }
   }
 
@@ -38,6 +45,7 @@ export const useTodos = () => {
     todoList: readonly(todoList),
     getTodo,
     createTodo,
-    updateTodo
+    updateTodo,
+    deleteTodo
   }
 }
