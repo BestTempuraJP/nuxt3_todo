@@ -1,15 +1,11 @@
 <template>
   <div>
     <v-container>
-      <Form as="v-form" class="pb-5" :validation-schema="schema" @submit="onSubmit">
-        <Field name="title" v-slot="{ field, errors }">
-          <v-text-field v-bind="field" label="Title" :error-messages="errors" />
-        </Field>
-        <Field name="body" v-slot="{ field, errors }">
-          <v-text-field v-bind="field" label="Body" :error-messages="errors" />
-        </Field>
-        <v-btn color="primary" class="mr-4" type="submit"> Submit </v-btn>
-      </Form>
+      <v-form @submit="handleSubmit" class="pb-7">
+        <v-text-field v-model="title" :error-messages="titleError" label="Title" />
+        <v-text-field v-model="body" :error-messages="bodyError" label="Body" />
+        <v-btn color="primary" type="submit">Submit</v-btn>
+      </v-form>
       <v-row>
         <v-col  v-for="(todo, index) in todos" :key="index" cols="12" md="4">
           <v-card>
@@ -27,26 +23,46 @@
   </div>
 </template>
 
-<script setup>
-import { Field, Form } from 'vee-validate';
+<script setup lang="ts">
+import { useForm, useField } from 'vee-validate';
 import * as yup from 'yup';
-
-let todos = reactive([])
-let key = ref(0)
 
 const schema = yup.object({
   title: yup.string().required().label('Title'),
   body: yup.string().required().label('Body'),
 });
+const { validate, resetForm } = useForm({validationSchema: schema})
+const {value: title, errorMessage: titleError} = useField<string>("title");
+const {value: body, errorMessage: bodyError} = useField<string>("body");
 
-const onSubmit = (values, { resetForm }) => {
-  key.value++
-  todos.push({
-    id: key.value,
-    title: values.title,
-    body: values.body,
-  })
-  resetForm();
+interface Todo {
+  id: number
+  title: string
+  body: string
+}
+
+let todos = reactive<Todo[]>([]);
+let key = ref(0);
+
+const handleSubmit = async (e: Event) => {
+  const result = await validate();
+  if (result.valid) {
+    key.value++;
+    todos.push({
+      id: key.value,
+      title: title.value,
+      body: body.value
+    });
+    resetForm({
+      values: {
+        title: '',
+        body: ''
+      }
+    })
+    e.preventDefault();
+  } else {
+    return true
+  }
 }
 
 </script>
