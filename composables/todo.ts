@@ -23,7 +23,7 @@ export const useTodos = () => {
   }
 
   return {
-    todos: readonly(todoList),
+    todoList: readonly(todoList),
     createTodo
   }
 }
