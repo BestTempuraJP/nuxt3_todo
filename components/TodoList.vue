@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col  v-for="(todo, index) in todos" :key="index" cols="12" md="4">
+    <v-col  v-for="(todo, index) in todoList" :key="index" cols="12" md="4">
       <v-card>
         <v-card-title>
           <p>title: {{ todo.title }}</p>
@@ -14,6 +14,5 @@
   </v-row>
 </template>
 <script setup>
-const todos = []
-
+const { todoList } = useTodos()
 </script>
