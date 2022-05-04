@@ -1,11 +1,15 @@
 <template>
   <div>
     <v-container>
-      <v-form @submit.prevent="add" class="pb-5">
-        <v-text-field label="Title" v-model="form.title" />
-        <v-text-field label="Body" v-model="form.body" />
-        <v-btn color="primary" type="submit"><b>Submit</b></v-btn>
-      </v-form>
+      <Form as="v-form" class="pb-5" :validation-schema="schema" @submit="onSubmit">
+        <Field name="title" v-slot="{ field, errors }">
+          <v-text-field v-bind="field" label="Title" :error-messages="errors" />
+        </Field>
+        <Field name="body" v-slot="{ field, errors }">
+          <v-text-field v-bind="field" label="Body" :error-messages="errors" />
+        </Field>
+        <v-btn color="primary" class="mr-4" type="submit"> Submit </v-btn>
+      </Form>
       <v-row>
         <v-col  v-for="(todo, index) in todos" :key="index" cols="12" md="4">
           <v-card>
@@ -23,32 +27,26 @@
   </div>
 </template>
 
-<script setup lang="ts">
-type todoForm = {
-  title: string,
-  body: string
-}
-type todo = {
-  id: number,
-  title: string,
-  body: string
-}
+<script setup>
+import { Field, Form } from 'vee-validate';
+import * as yup from 'yup';
 
-let form = reactive<todoForm>({
-  title: '',
-  body: ''
-})
-let todos = reactive<todo[]>([])
+let todos = reactive([])
 let key = ref(0)
 
-const add = () => {
+const schema = yup.object({
+  title: yup.string().required().label('Title'),
+  body: yup.string().required().label('Body'),
+});
+
+function onSubmit(values, { resetForm }) {
   key.value++
   todos.push({
     id: key.value,
-    title: form.title,
-    body: form.body
+    title: values.title,
+    body: values.body,
   })
-  form.title = ''
-  form.body = ''
+  resetForm();
 }
+
 </script>
