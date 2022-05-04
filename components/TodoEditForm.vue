@@ -1,11 +1,16 @@
 <template>
-  <v-form @submit="handleSubmit">
-    <v-text-field v-model="title" :error-messages="titleError" label="Title" />
-    <v-text-field v-model="body" :error-messages="bodyError" label="Body" />
-    <v-btn color="primary" type="submit">
-      Edit
-    </v-btn>
-  </v-form>
+  <v-card class="pa-5 mb-7">
+    <v-form @submit="handleSubmit">
+      <h3 class="subtitle-2 pb-3">
+        Edit Task
+      </h3>
+      <v-text-field v-model="title" :error-messages="titleError" label="Title" variant="outlined" />
+      <v-text-field v-model="body" :error-messages="bodyError" label="Body" variant="outlined" />
+      <v-btn color="warning" type="submit">
+        Edit
+      </v-btn>
+    </v-form>
+  </v-card>
 </template>
 
 <script setup lang="ts">

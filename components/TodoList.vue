@@ -2,13 +2,15 @@
   <div>
     <v-row>
       <v-col v-for="(todo, index) in todoList" :key="index" cols="12" md="4">
-        <v-card>
+        <v-card class="wordbreak-all">
           <v-card-title>
-            <p>title: {{ todo.title }}</p>
+            <p>{{ todo.title }}</p>
           </v-card-title>
           <v-card-text>
-            <p>id: {{ todo.id }}</p>
-            <p>body: {{ todo.body }}</p>
+            <v-chip class="mb-2">
+              id: {{ todo.id }}
+            </v-chip>
+            <p>{{ todo.body }}</p>
           </v-card-text>
           <v-card-actions>
             <v-btn :to="{name: 'id', params: {id: todo.id}}" color="secondary">
@@ -30,3 +32,7 @@ const drop = (id: number) => {
   deleteTodo(id)
 }
 </script>
+<style lang="sass" scoped>
+.wordbreak-all
+  wordbreak: break-all
+</style>

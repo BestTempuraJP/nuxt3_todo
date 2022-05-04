@@ -3,6 +3,9 @@
     <Head>
       <Title>Todo App - Edit</Title>
     </Head>
+    <h3 class="subtitle-1 mb-5">
+      Edit Page
+    </h3>
     <TodoEditForm
       :todo="todo"
       class="pb-5"
