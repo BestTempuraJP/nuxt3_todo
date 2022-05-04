@@ -9,6 +9,11 @@
           <p>id: {{ todo.id }}</p>
           <p>body: {{ todo.body }}</p>
         </v-card-text>
+        <v-card-actions>
+          <v-btn :to="{name: 'id', params: {id: todo.id}}" color="secondary">
+            EDIT
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
