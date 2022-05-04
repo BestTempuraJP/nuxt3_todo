@@ -39,7 +39,7 @@ const schema = yup.object({
   body: yup.string().required().label('Body'),
 });
 
-function onSubmit(values, { resetForm }) {
+const onSubmit = (values, { resetForm }) => {
   key.value++
   todos.push({
     id: key.value,
