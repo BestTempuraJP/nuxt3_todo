@@ -1,8 +1,11 @@
 <template>
   <div>
-    <v-container>
-      <TodoForm  class="pb-7" />
-      <TodoList />
-    </v-container>
+    <TodoForm  class="pb-7" />
+    <TodoList />
   </div>
 </template>
+<script>
+definePageMeta({
+  layout: "default",
+});
+</script>
