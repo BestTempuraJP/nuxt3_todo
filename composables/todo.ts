@@ -4,13 +4,13 @@ interface Todo {
   title: string;
   body: string;
 }
-interface payload {
+interface Payload {
   title: string;
   body: string;
 }
 
 export const useTodos = () => {
-  const key: Ref<number> = useState('key', () => 0)
+  const nextTodoId: Ref<number> = useState('nextTodoId', () => 0)
   const todoList: Ref<Todo[]> = useState('todoList', () => [])
 
   const fetchTodo = (id: number) => {
@@ -18,13 +18,13 @@ export const useTodos = () => {
     return result[0]
   }
 
-  const createTodo = (payload: payload) => {
-    key.value++
+  const createTodo = (payload: Payload) => {
     todoList.value.push({
-      id: key.value,
+      id: nextTodoId.value,
       title: payload.title,
       body: payload.body
     })
+    nextTodoId.value++
   }
 
   const updateTodo = (payload: Todo) => {
