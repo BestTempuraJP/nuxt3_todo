@@ -40,7 +40,7 @@
             >
               <v-icon :icon="item.isCompleted ? 'mdi-restore' : 'mdi-check-circle-outline'" />
             </v-btn>
-            <v-btn :to="{name: 'id', params: {id: item.id}}" size="small" color="warning" class="mr-5">
+            <v-btn :to="{name: 'edit-id', params: {id: item.id}}" size="small" color="warning" class="mr-5">
               <v-icon>mdi-square-edit-outline</v-icon>
             </v-btn>
             <v-btn color="error" size="small" @click="drop(item.id)">
