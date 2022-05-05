@@ -27,6 +27,6 @@ definePageMeta({
 })
 
 const route = useRoute()
-const { getTodo } = useTodos()
-const todo = getTodo(Number(route.params.id))
+const { fetchTodo } = useTodos()
+const todo = fetchTodo(Number(route.params.id))
 </script>

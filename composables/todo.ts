@@ -13,7 +13,7 @@ export const useTodos = () => {
   const key: Ref<number> = useState('key', () => 0)
   const todoList: Ref<Todo[]> = useState('todoList', () => [])
 
-  const getTodo = (id: number) => {
+  const fetchTodo = (id: number) => {
     const result = todoList.value.filter(todo => todo.id === Number(id))
     return result[0]
   }
@@ -43,7 +43,7 @@ export const useTodos = () => {
 
   return {
     todoList: readonly(todoList),
-    getTodo,
+    fetchTodo,
     createTodo,
     updateTodo,
     deleteTodo
