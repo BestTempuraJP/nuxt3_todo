@@ -24,10 +24,10 @@ import * as yup from 'yup'
 import { Todo } from '~/types/todo'
 
 type Props = {
-  todo: Todo | false
+  todo?: Todo | false
 }
 const { todo } = withDefaults(defineProps<Props>(), {
-  todo: false
+  todo: undefined
 })
 
 const pageTitle = computed(() => {
