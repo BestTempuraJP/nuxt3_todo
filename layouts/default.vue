@@ -1,5 +1,8 @@
 <template>
   <div class="bg-grey-lighten-4 minh-100vh">
+    <Head>
+      <Title>Todo App</Title>
+    </Head>
     <v-container>
       <h2 class="title pb-5">
         Todo App
