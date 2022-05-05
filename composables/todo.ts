@@ -25,7 +25,7 @@ export const useTodos = () => {
   }
 
   const createTodo = (payload: CreateFormPayload) => {
-    todoList.value.push({
+    todoList.value.unshift({
       id: nextTodoId.value,
       title: payload.title,
       body: payload.body,
