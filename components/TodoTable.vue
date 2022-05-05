@@ -79,7 +79,7 @@ const drop = (id: number) => {
 </script>
 <style lang="sass" scoped>
 .wordbreak-all
-  wordbreak: break-all
+  word-break: break-all
 .whitespace-nowrap
   white-space: nowrap
 </style>
