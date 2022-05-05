@@ -1,9 +1,12 @@
 # 概要（2022/05/04)
+URL: https://symphonious-frangollo-65ab0f.netlify.app/
+
 今月中にNuxt3の安定板がリリースするとのことなので、RC版で作ってみました。
 
 同時期に安定板が出ると思われる
 - Vuetify
 - VeeValidate
+
 も導入してます。
 
 
