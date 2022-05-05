@@ -21,13 +21,10 @@
 <script setup lang="ts">
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
+import { Todo } from '~/types/todo'
 
 type Props = {
-  todo: {
-    id: number,
-    title: string,
-    body: string
-  }
+  todo: Todo
 }
 const { todo } = defineProps<Props>()
 
