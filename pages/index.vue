@@ -7,7 +7,7 @@
       Home
     </h3>
     <TodoForm class="pb-7" />
-    <TodoList />
+    <TodoTable />
   </div>
 </template>
 <script setup>
