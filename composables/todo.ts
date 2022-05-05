@@ -10,7 +10,7 @@ export const useTodos = () => {
 
   const findIndexTodo = (id: number) => {
     const index = todoList.value.findIndex(todo => todo.id === id)
-    if (index < 0) {
+    if (index === -1) {
       throw throwError('Task is not found')
     }
     return index
