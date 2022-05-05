@@ -2,8 +2,16 @@ import type { Ref } from 'vue'
 import type { Todo, CreateFormPayload } from '~/types/todo'
 
 export const useTodos = () => {
-  const nextTodoId: Ref<number> = useState('nextTodoId', () => 0)
+  const nextTodoId: Ref<number> = useState('nextTodoId', () => 1)
   const todoList: Ref<Todo[]> = useState('todoList', () => [])
+
+  const findIndexTodo = (id: number) => {
+    const index = todoList.value.findIndex(todo => todo.id === id)
+    if (index > -1) {
+      throw throwError('Task is not found')
+    }
+    return index
+  }
 
   const fetchTodo = (id: number): Todo => {
     const result = todoList.value.filter(todo => todo.id === Number(id))
@@ -17,21 +25,25 @@ export const useTodos = () => {
     todoList.value.push({
       id: nextTodoId.value,
       title: payload.title,
-      body: payload.body
+      body: payload.body,
+      isCompleted: false
     })
     nextTodoId.value++
   }
 
   const updateTodo = (payload: Todo) => {
-    const result = fetchTodo(payload.id)
-    todoList.value[result.id] = payload
+    const targetIndex = findIndexTodo(payload.id)
+    todoList.value[targetIndex] = payload
   }
 
   const deleteTodo = (id: number) => {
-    const targetIndex = todoList.value.findIndex(todo => todo.id === id)
-    if (targetIndex > -1) {
-      todoList.value.splice(targetIndex, 1)
-    }
+    const targetIndex = findIndexTodo(id)
+    todoList.value.splice(targetIndex, 1)
+  }
+
+  const completeTodo = (id: number) => {
+    const targetIndex = findIndexTodo(id)
+    todoList.value[targetIndex].isCompleted = true
   }
 
   return {
@@ -39,6 +51,7 @@ export const useTodos = () => {
     fetchTodo,
     createTodo,
     updateTodo,
-    deleteTodo
+    deleteTodo,
+    completeTodo
   }
 }
