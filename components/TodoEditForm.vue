@@ -12,7 +12,9 @@
         </v-btn>
       </v-form>
     </v-card>
-    <v-alert v-show="success" type="success" class="mb-5">Successfully updated!</v-alert>
+    <v-alert v-show="success" type="success" class="mb-5">
+      Successfully updated!
+    </v-alert>
   </div>
 </template>
 
@@ -30,8 +32,8 @@ type Props = {
 const { todo } = defineProps<Props>()
 
 const schema = yup.object({
-  title: yup.string().required().label('Title'),
-  body: yup.string().required().label('Body')
+  title: yup.string().required().max(10).label('Title'),
+  body: yup.string().required().max(20).label('Body')
 })
 const { validate, resetForm } = useForm({ validationSchema: schema })
 const { value: title, errorMessage: titleError } = useField<string>('title')
