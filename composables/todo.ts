@@ -4,10 +4,13 @@ import type { Todo, CreateFormPayload } from '~/types/todo'
 export const useTodos = () => {
   const nextTodoId: Ref<number> = useState('nextTodoId', () => 1)
   const todoList: Ref<Todo[]> = useState('todoList', () => [])
+  const activeTodoList = computed(() => {
+    return todoList.value.filter(todo => !todo.isCompleted)
+  })
 
   const findIndexTodo = (id: number) => {
     const index = todoList.value.findIndex(todo => todo.id === id)
-    if (index > -1) {
+    if (index < 0) {
       throw throwError('Task is not found')
     }
     return index
@@ -31,6 +34,11 @@ export const useTodos = () => {
     nextTodoId.value++
   }
 
+  const toggleStatusTodo = (todo: Todo) => {
+    const targetIndex = findIndexTodo(todo.id)
+    todoList.value[targetIndex].isCompleted = !todo.isCompleted
+  }
+
   const updateTodo = (payload: Todo) => {
     const targetIndex = findIndexTodo(payload.id)
     todoList.value[targetIndex] = payload
@@ -41,17 +49,13 @@ export const useTodos = () => {
     todoList.value.splice(targetIndex, 1)
   }
 
-  const completeTodo = (id: number) => {
-    const targetIndex = findIndexTodo(id)
-    todoList.value[targetIndex].isCompleted = true
-  }
-
   return {
     todoList: readonly(todoList),
+    activeTodoList: readonly(activeTodoList),
     fetchTodo,
+    toggleStatusTodo,
     createTodo,
     updateTodo,
-    deleteTodo,
-    completeTodo
+    deleteTodo
   }
 }

@@ -50,7 +50,8 @@ const handleSubmit = async (e: Event) => {
     await updateTodo({
       id: todo.id,
       title: title.value,
-      body: body.value
+      body: body.value,
+      isCompleted: todo.isCompleted
     })
     success.value = true
     e.preventDefault()
