@@ -1,9 +1,8 @@
-import type { Ref } from 'vue'
 import type { Todo, CreateFormPayload } from '~/types/todo'
 
 export const useTodos = () => {
-  const nextTodoId: Ref<number> = useState('nextTodoId', () => 1)
-  const todoList: Ref<Todo[]> = useState('todoList', () => [])
+  const nextTodoId = useState<number>('nextTodoId', () => 1)
+  const todoList = useState<Todo[]>('todoList', () => [])
   const activeTodoList = computed(() => {
     return todoList.value.filter(todo => !todo.isCompleted)
   })
