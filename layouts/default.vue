@@ -1,15 +1,13 @@
 <template>
-  <div class="bg-grey-lighten-4 minh-100vh">
+  <v-container>
     <Head>
       <Title>Todo App</Title>
     </Head>
-    <v-container>
-      <h2 class="title pb-5">
-        Todo App
-      </h2>
-      <slot />
-    </v-container>
-  </div>
+    <h2 class="title pb-5">
+      Todo App
+    </h2>
+    <slot />
+  </v-container>
 </template>
 <style lang="sass" scoped>
 .minh-100vh
