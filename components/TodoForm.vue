@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card class="pa-5 mb-7">
-      <v-form @submit="handleSubmit">
+      <v-form @submit.prevent="handleSubmit">
         <h3 class="subtitle-2 pb-3">
           {{ pageTitle }}
         </h3>
@@ -50,7 +50,7 @@ if (todo) {
 
 const success = ref(false)
 const { updateTodo, createTodo } = useTodos()
-const handleSubmit = async (e: Event) => {
+const handleSubmit = async () => {
   const result = await validate()
   if (result.valid && todo) { // if edit
     await updateTodo({
@@ -60,7 +60,6 @@ const handleSubmit = async (e: Event) => {
       isCompleted: todo.isCompleted
     })
     success.value = true
-    e.preventDefault()
   } else if (result.valid && !todo) { // is create
     createTodo({
       title: title.value,

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <v-checkbox v-model="show" :label="toggleShowText" class="d-inline-block" />
+    <v-checkbox
+      v-model="show"
+      :label="toggleShowText"
+      class="d-inline-block"
+    />
     <v-table v-if="displayTodoList.length">
       <thead>
         <tr>
@@ -38,12 +42,22 @@
               class="mr-5"
               @click="handleOnCheck(item)"
             >
-              <v-icon :icon="item.isCompleted ? 'mdi-restore' : 'mdi-check-circle-outline'" />
+              <v-icon
+                :icon="item.isCompleted ? 'mdi-restore' : 'mdi-check-circle-outline'"
+              />
             </v-btn>
-            <v-btn :to="{name: 'edit-id', params: {id: item.id}}" size="small" color="warning" class="mr-5">
+            <v-btn
+              :to="{ name: 'edit-id', params: { id: item.id } }"
+              size="small"
+              color="warning"
+              class="mr-5"
+            >
               <v-icon>mdi-square-edit-outline</v-icon>
             </v-btn>
-            <v-btn color="error" size="small" @click="drop(item.id)">
+            <v-btn
+              color="error"
+              size="small"
+              @click="drop(item.id)">
               <v-icon>mdi-delete</v-icon>
             </v-btn>
           </td>
@@ -78,8 +92,6 @@ const drop = (id: number) => {
 }
 </script>
 <style lang="sass" scoped>
-.wordbreak-all
-  word-break: break-all
 .whitespace-nowrap
   white-space: nowrap
 </style>
