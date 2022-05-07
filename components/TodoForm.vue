@@ -24,11 +24,9 @@ import * as yup from 'yup'
 import { Todo } from '~/types/todo'
 
 type Props = {
-  todo?: Todo | false
+  todo?: Todo
 }
-const { todo } = withDefaults(defineProps<Props>(), {
-  todo: undefined
-})
+const { todo } = defineProps<Props>()
 
 const pageTitle = computed(() => {
   return todo ? 'Edit Task' : 'Create Task'
